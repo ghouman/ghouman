@@ -28,7 +28,11 @@
     <script src="../bootstrap/js/bootstrap-typeahead.js"></script>
     <script src="../bootstrap/js/bootstrap-datepicker.js"></script>
     <script src="../bootstrap/js/main.js"></script>
-
+    <script src="../bootstrap/js/sco.valid.js"></script>
+<script src="../bootstrap/js/qunit-1.11.0.js"></script>
+<script src="../bootstrap/js/spin.js"></script>
+<script src="../bootstrap/js/jquery.mockjax.js"></script>
+<script src="../bootstrap/js/jquery.form.js"></script>
   </body>
 <script type="text/javascript">
 

@@ -33,6 +33,8 @@
     <link href="../bootstrap/css/datepicker.css" rel="stylesheet">
     <link href="../bootstrap/css/bootstrap-modal.css" rel="stylesheet">
     <link href="../bootstrap/js/google-code-prettify/prettify.css" rel="stylesheet">
+
+    <link href="../bootstrap/css/scojs.css" rel="stylesheet">
     <style type="text/css">
         <!--
         #pagebody {
