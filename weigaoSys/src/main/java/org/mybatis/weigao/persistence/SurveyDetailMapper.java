@@ -18,5 +18,5 @@ public interface SurveyDetailMapper {
 
     public void addSurveyDetail(SurveyDetail surveyDetail);
 
-    public List<SurveyDetail> getSurveyDetail();
+    public List<SurveyDetail> getSurveyDetail(int uid);
 }
