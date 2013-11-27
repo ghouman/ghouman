@@ -6,63 +6,28 @@
 
     <cache/>
 
-    <select id="getSurveyDetail" parameterType="SurveyDetail" resultType="SurveyDetail">
-        SELECT
-        A.UID,A.SurveyNo,
-        case A.IsCheck when 0 then '否' when 1 then '是' end as checked,
-        case A.IsSubmit when 0 then '否' when 1 then '是' end as submit,
-        case A.IsVerify when 0 then '否' when 1 then '是' end as verify,
-        A.Preparer, A.SurveyDate, CUST.CUSTOMER,A.CustomerID, CUST.ZECT, P1.Port, P2.Province, CUST.Clerk,
-        CUST.SalesRegion,
-        LabOffice,LabTel,Doctor,Nurse,Engineer,A.HospitalMemo,HDF_Machine,HDF_Capacity, WaterTreatment
-        ,HospitalSurgical,
-        RenalClinic,HD ,HF, HDF, CRRT, HP, ChannelDYMO ,ChannelDevice ,IsProduct ,ProductPeriod,
-        IsPlan,PlanDialys, HDF__F1,NEPD_F1 ,HDF__F2 ,NEPD_F2 , HDF__F3 ,NEPD_F3 ,A.Feedback ,FB_Note
-        FROM dbo.oSurvey AS A LEFT OUTER JOIN
-        dbo.bCUSTOMER AS CUST ON A.CustomerID = CUST.UID LEFT OUTER JOIN
-        dbo.b0Port AS P1 ON CUST.PortID = P1.UID LEFT OUTER JOIN
-        dbo.b0Province AS P2 ON P1.ProvinceID = P2.UID
-        where 1=1
-        <if test="customer != null">
-            and CUST.CUSTOMER like '%'+#{customer}+'%'
-        </if>
-        <if test="uid != 0">
-            and A.uid = #{uid}
-        </if>
-        <if test="surveyNo != null">
-            and A.SurveyNo like '%'+#{surveyNo}+'%'
-        </if>
-        <if test="preparer != null">
-            and A.preparer like '%'+#{preparer}+'%'
-        </if>
-        <if test="checked != null">
-            and A.IsCheck = #{checked}
-        </if>
-        <if test="submit != null">
-            and A.IsSubmit = #{submit}
-        </if>
-        <if test="verify != null">
-            and A.IsVerify = #{verify}
-        </if>
-        <if test="surveyDate != null">
-            and A.SurveyDate = #{surveyDate}
-        </if>
+    <select id="getSurveyDetail" parameterType="int" resultType="SurveyDetail">
+        SELECT     B.UID,PN4.Category, PN3.Brand, PN2.Family, PN1.PartNo,
+      PN1.Unit, B.AHSCA, B.APrice, b.BReUseNote,b.BInstallDate,b.Remark
+        FROM         dbo.oSurvey AS A INNER JOIN
+                              dbo.oSurveyDtl AS B ON A.UID = B.SurveyID LEFT OUTER JOIN
+                              dbo.b1PartNo AS PN1 ON B.PartID = PN1.UID LEFT OUTER JOIN
+                              dbo.b1Family AS PN2 ON PN1.FamilyID = PN2.UID LEFT OUTER JOIN
+                              dbo.b1Brand AS PN3 ON PN2.BrandID = PN3.UID LEFT OUTER JOIN
+                              dbo.b1Category AS PN4 ON PN3.CategoryID = PN4.UID
+                              where a.uid= #{surveyUid}
 
     </select>
 
     <update id="updateSurveyDetail" parameterType="SurveyDetail">
-        UPDATE dbo.oSurvey
+        UPDATE dbo.oSurveyDtl
         SET
-        <if test="checked != null">
-            IsCheck = #{checked}
-        </if>
-        <if test="submit != null">
-            IsSubmit = #{submit}
-        </if>
-        <if test="verify != null">
-            IsVerify = #{verify}
-        </if>
-        WHERE UID = #{uid}
+        [AHSCA] = #{ahsca}
+                           ,[APrice]  = #{aPrice}
+                           ,[BReUseNote]    = #{bReUseNote}
+                           ,[BInstallDate]  = #{bInstallDate}
+                           ,[Remark]     = #{remark}
+        WHERE UID =  #{uid}
     </update>
 
 
