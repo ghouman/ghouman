@@ -74,6 +74,7 @@ public class CustomerSurvey implements Serializable {
     private String salesRegion;
     private String labOffice;//所属科室
     private String labTel;
+    private String customerName;
 
     private String jsonString;
 
@@ -83,6 +84,14 @@ public class CustomerSurvey implements Serializable {
 
     public void setJsonString(String jsonString) {
         this.jsonString = jsonString;
+    }
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
     }
 
     public int getCustomerId() {
