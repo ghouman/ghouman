@@ -32,6 +32,10 @@ public class CustomerSurveyService {
         return customerSurveyMapper.getCustomerSurvey(customerSurvey);
     }
 
+    public List<SurveyDetail> getSurveyDetail(int uid ) {
+        return surveyDetailMapper.getSurveyDetail(uid);
+    }
+
     @Transactional
     public void updateCustomerSurveyStatus(CustomerSurvey customerSurvey) {
         customerSurveyMapper.updateCustomerSurveyStatus(customerSurvey);
@@ -40,6 +44,14 @@ public class CustomerSurveyService {
     @Transactional
     public void updateCustomerSurvey(CustomerSurvey customerSurvey) {
         customerSurveyMapper.updateCustomerSurvey(customerSurvey);
+        String jsonString = customerSurvey.getJsonString();
+                if(!StringUtil.isEmpty(jsonString)){
+                    List<SurveyDetail> surveyDetailList = JsonUtil.getDTOList(jsonString,SurveyDetail.class);
+                    for(int i = 0;i<surveyDetailList.size(); i++){
+                        SurveyDetail surveyDetail = surveyDetailList.get(i);
+                        surveyDetailMapper.updateSurveyDetail(surveyDetail);//保存调研产品明细
+                    }
+                }
     }
 
     @Transactional
