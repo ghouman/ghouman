@@ -15,27 +15,31 @@
 
     <ol class="breadcrumb">
         <li><a href="#">客户调研记录查看</a></li>
+        <li><a href="CustomerSurvey.action">返回</a></li>
     </ol>
 </div>
 <div class="container">
-
     <table class="table table-bordered">
         <tr>
             <th>客户：</th>
-            <td colspan="5">${actionBean.customerSurvey.customer}</td>
+            <td >${actionBean.customerSurvey.customer}</td>
+            <th>所属医院：</th>
+                        <td colspan="3">${actionBean.customerSurvey.zect}</td>
         </tr>
         <tr>
             <th>所属省市：</th>
-            <td >${actionBean.customerSurvey.province} ${actionBean.customerSurvey.port}</td>
+            <td>${actionBean.customerSurvey.province} ${actionBean.customerSurvey.port}</td>
             <th>所属区域：</th>
             <td colspan="3">${actionBean.customerSurvey.salesRegion}</td>
         </tr>
         <tr>
             <th>所属科室：</th>
-            <td >${actionBean.customerSurvey.labOffice} </td>
+            <td>${actionBean.customerSurvey.labOffice} </td>
             <th>所属科室电话：</th>
             <td colspan="3">${actionBean.customerSurvey.labTel}</td>
         </tr>
+    </table>
+    <table class="table table-bordered">
         <tr>
             <th>医生人数：</th>
             <td>${actionBean.customerSurvey.doctor} </td>
@@ -50,7 +54,7 @@
         </tr>
         <tr>
             <th>现有血透机数：</b></td>
-            <td>${actionBean.customerSurvey.hdfMachine}</td>
+                <td>${actionBean.customerSurvey.hdfMachine}</td>
             <th>血透室空间可容纳最大床位数：</th>
             <td>${actionBean.customerSurvey.hdfCapacity}</td>
             <th>现有水处理可带最大床位数：</th>
@@ -120,6 +124,56 @@
             <td colspan="5">${actionBean.customerSurvey.fbNote} </td>
 
         </tr>
+    </table>
+
+    <table class="table table-bordered">
+        <tbody id="tr_category">
+        <tr id="0">
+            <th width='10%'>产品类别：</th>
+
+            <th width='10%'>品牌：</th>
+
+            <th width='10%'>规格：</th>
+
+            <th width='10%'>产品型号：</th>
+
+            <th width='10%'>数量/使用量：</th>
+
+            <th width='10%'>市场价格：</th>
+
+            <th width='10%'>复用情况：</th>
+
+            <th width='20%'>装机时间：</th>
+        </tr>
+
+
+        <c:forEach var="surveyDetail" items="${actionBean.surveyDetailList}">
+            <tr>
+                <td>${surveyDetail.category}</td>
+                <td>${surveyDetail.brand}</td>
+                <td>${surveyDetail.family}</td>
+                <td>${surveyDetail.partNo}</td>
+                <td>
+                    ${surveyDetail.ahsca}
+                </td>
+                <td>
+                   ${surveyDetail.aPrice}
+                </td>
+                <td>
+                    ${surveyDetail.bReUseNote}
+                </td>
+                <td>
+                    ${surveyDetail.bInstallDate}
+                </td>
+                    <%--
+                    <td><fmt:formatDate value="${order.orderDate}"
+                        pattern="yyyy/MM/dd hh:mm:ss" /></td>
+                    <td><fmt:formatNumber value="${order.totalPrice}"
+                        pattern="$#,##0.00" /></td>   --%>
+            </tr>
+        </c:forEach>
+
+        </tbody>
     </table>
 </div>
 <%@ include file="../common/IncludeBottom.jsp" %>
