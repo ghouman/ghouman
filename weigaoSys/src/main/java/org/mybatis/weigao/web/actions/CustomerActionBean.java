@@ -9,11 +9,13 @@ import net.sourceforge.stripes.integration.spring.SpringBean;
 import net.sourceforge.stripes.validation.Validate;
 import net.sourceforge.stripes.validation.ValidateNestedProperties;
 import org.mybatis.weigao.domain.Customer;
+import org.mybatis.weigao.domain.CustomerSurvey;
 import org.mybatis.weigao.service.CustomerService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.StringReader;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 /**
@@ -28,6 +30,7 @@ public class CustomerActionBean extends AbstractActionBean {
 
     private static final String LISTCUSTOMER = "/WEB-INF/jsp/weigao/listCustomer.jsp";
     private static final String UPDATECUSTOMER = "/WEB-INF/jsp/weigao/updateCustomer.jsp";
+    private static final String VIEWCUSTOMER = "/WEB-INF/jsp/weigao/viewCustomer.jsp";
 
     @SpringBean
     private transient CustomerService customerService;
@@ -55,15 +58,21 @@ public class CustomerActionBean extends AbstractActionBean {
     }
 
 
-    @DefaultHandler
+
     public ForwardResolution goCustomer() {
 
         return new ForwardResolution(LISTCUSTOMER);
     }
 
+    @DefaultHandler
     public ForwardResolution listCustomer() {
         customerList = customerService.getCustomer(customer);
         return new ForwardResolution(LISTCUSTOMER);
+    }
+
+    public ForwardResolution viewCustomer() throws UnsupportedEncodingException {
+        customerList = customerService.getCustomer(customer);
+        return new ForwardResolution(VIEWCUSTOMER);
     }
 
     public StreamingResolution showCustomer() {
@@ -87,11 +96,6 @@ public class CustomerActionBean extends AbstractActionBean {
 
     }
 
-    public Resolution updateCustomer(){
-        customerService.updateCustomer(customer);
-        return new ForwardResolution(LISTCUSTOMER);
-    }
-
     public ForwardResolution goUpdateCustomer() {
         HttpServletRequest request = context.getRequest();
         int uid = Integer.parseInt(request.getParameter("uid"));
@@ -100,6 +104,11 @@ public class CustomerActionBean extends AbstractActionBean {
         customerList = customerService.getCustomer(customer1);
         customer =  customerList.get(0);
         return new ForwardResolution(UPDATECUSTOMER);
+    }
+
+    public Resolution updateCustomer(){
+        customerService.updateCustomer(customer);
+        return new ForwardResolution(VIEWCUSTOMER);
     }
 
 }
