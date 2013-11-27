@@ -7,11 +7,10 @@ import net.sourceforge.stripes.validation.Validate;
 import net.sourceforge.stripes.validation.ValidateNestedProperties;
 import org.displaytag.pagination.PaginatedList;
 import org.displaytag.properties.SortOrderEnum;
-import org.hsqldb.lib.StringUtil;
 import org.mybatis.weigao.domain.Customer;
 import org.mybatis.weigao.domain.CustomerSurvey;
+import org.mybatis.weigao.domain.SurveyDetail;
 import org.mybatis.weigao.service.CustomerSurveyService;
-//import org.mybatis.weigao.service.CustomerService;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.StringReader;
@@ -19,6 +18,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+
 
 /**
  * Created with IntelliJ IDEA.
@@ -38,6 +38,7 @@ public class CustomerSurveyActionBean extends AbstractActionBean {
 
     @SpringBean
     private transient CustomerSurveyService customerSurveyService;
+
 /*    @SpringBean
             private transient CustomerService customerService;*/
 
@@ -71,6 +72,15 @@ public class CustomerSurveyActionBean extends AbstractActionBean {
     }
 
     private static List<CustomerSurvey> customerSurveys;
+    private List<SurveyDetail> surveyDetailList;
+
+    public List<SurveyDetail> getSurveyDetailList() {
+        return surveyDetailList;
+    }
+
+    public void setSurveyDetailList(List<SurveyDetail> surveyDetailList) {
+        this.surveyDetailList = surveyDetailList;
+    }
 
     @ValidateNestedProperties({
             @Validate(field = "surveyNo")
@@ -142,6 +152,7 @@ public class CustomerSurveyActionBean extends AbstractActionBean {
         customerSurvey1.setUid(uid);
         customerSurveys = customerSurveyService.getCustomerSurvey(customerSurvey1);
         customerSurvey = customerSurveys.get(0);
+        surveyDetailList = customerSurveyService.getSurveyDetail(uid);
         return new ForwardResolution(VIEWCUSTOMERSURVEY);
     }
 
@@ -149,7 +160,15 @@ public class CustomerSurveyActionBean extends AbstractActionBean {
     public Resolution addCustomerSurvey() {
         customerSurveyService.addCustomerSurvey(customerSurvey);
 
-        return new ForwardResolution(VIEWCUSTOMERSURVEY);
+        return new ForwardResolution(LISTCUSTOMERSURVEY);
+    }
+
+
+    //修改客户调研
+    public Resolution updateCustomerSurvey() {
+        customerSurveyService.updateCustomerSurvey(customerSurvey);
+
+        return new ForwardResolution(LISTCUSTOMERSURVEY);
     }
 
     //重定向客户调研修改页面
@@ -160,14 +179,10 @@ public class CustomerSurveyActionBean extends AbstractActionBean {
         customerSurvey1.setUid(uid);
         customerSurveys = customerSurveyService.getCustomerSurvey(customerSurvey1);
         customerSurvey = customerSurveys.get(0);
+        surveyDetailList = customerSurveyService.getSurveyDetail(uid);
         return new ForwardResolution(GOUPDATECUSTOMER);
     }
 
-    //修改客户调研
-    public Resolution updateCustomerSurvey() {
-        customerSurveyService.updateCustomerSurvey(customerSurvey);
-        return new ForwardResolution(VIEWCUSTOMERSURVEY);
-    }
 
     //更新客户调研状态
     public Resolution updateCustomerStatus() {
