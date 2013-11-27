@@ -77,7 +77,7 @@
                  </td>
                  <th>调研日期</th>
                  <td >
-                     <input type="date" name="customerSurvey.surveyDate" class="form-control" id="surveyDate"  required >
+                     <input type="text" name="customerSurvey.surveyDate" class="datepicker form-control" id="surveyDate" readonly="true" required >
                      </td>
            <th>医院信息：</th>
                    <td>
@@ -86,7 +86,7 @@
              </tr>
     <tr>
         <th>医生人数：</th>
-        <td><input type="number" name="customerSurvey.doctor" class="form-control" id="doctor" placeholder="请输入医生人数" required ></td>
+        <td><input type="text" name="customerSurvey.doctor" class="form-control" id="doctor" placeholder="请输入医生人数" required ></td>
         <th>护士人数：</th>
         <td><input type="number" name="customerSurvey.nurse" class="form-control" id="nurse" placeholder="请输入护士人数" required ></td>
         <th>工程师人数：</th>
@@ -111,220 +111,252 @@
     </tr>
     <tr>
         <th>医院手术量（例/年）：</th>
-        <td><stripes:text name="customerSurvey.hospitalSurgical" class="form-control" id="hospitalSurgical"/>
+        <td><input type="number" name="customerSurvey.hospitalSurgical" class="form-control" id="hospitalSurgical" placeholder="请输入医院手术量（例/年)"
+            value="${actionBean.customerSurvey.hospitalSurgical}" required>
+            <%--<stripes:text name="customerSurvey.hospitalSurgical" class="form-control" id="hospitalSurgical"/>--%>
         </td>
         <th>肾内科门诊量（人次/年）：</th>
-        <td><stripes:text name="customerSurvey.renalClinic" class="form-control" id="renalClinic"/></td>
-        <th>血液滤过：</th>
-        <td><stripes:text name="customerSurvey.hf" class="form-control" id="hf"/></td>
-
-    </tr>
-    <tr>
-        <th>血液透析滤过：</th>
-        <td><stripes:text name="customerSurvey.hdf" class="form-control" id="hdf"/></td>
-        <th>CRRT：</th>
-        <td><stripes:text name="customerSurvey.crrt" class="form-control" id="crrt"/></td>
-        <th>血液灌流：</th>
-        <td><stripes:text name="customerSurvey.hp" class="form-control" id="hp"/></td>
-
-    </tr>
-    <tr>
-        <th>月治疗次数：</th>
-        <td><stripes:text name="customerSurvey.remedyMothly" class="form-control" id="remedyMothly"/></td>
-        <th>耗材产品销售渠道：</th>
-        <td>
-           <input type="radio" name="customerSurvey.channelDYMO" value="直销" class="form-control" id="channelDYMO" checked="true">&nbsp;直销&nbsp;&nbsp;
-           <input type="radio" name="customerSurvey.channelDYMO" value="分销" class="form-control" id="channelDYMO1">&nbsp;分销
-
+        <td><input type="number" name="customerSurvey.renalClinic" class="form-control" id="renalClinic" placeholder="请输入肾内科门诊量（人次/年）"
+            value="${actionBean.customerSurvey.renalClinic}" required>
+            <%--<stripes:text name="customerSurvey.renalClinic" class="form-control" id="renalClinic"/>--%></td>
+        <th>血液透析：</th>
+        <td><input type="number" name="customerSurvey.hd" class="form-control" id="hd" placeholder="请输入血液透析"
+        value="${actionBean.customerSurvey.hd}" required>
         </td>
-        <th>设备销售产品渠道：</th>
-        <td>
-            <input type="radio" name="customerSurvey.channelDevice" value="直销" class="form-control" id="channelDevice" checked="true">&nbsp;直销&nbsp;&nbsp;
-            <input type="radio" name="customerSurvey.channelDevice" value="分销" class="form-control" id="channelDevice1">&nbsp;直销
-    </tr>
-    <tr>
-        <th>是否存在产品投放：</th>
-        <td>
-            <input type="radio" name="customerSurvey.ynProduct" value="1" class="form-control" id="ynProduct" checked="true"> &nbsp;是&nbsp;&nbsp;
-                                <input type="radio" name="customerSurvey.ynProduct" value="0" class="form-control" id="ynProduct1">&nbsp; 否</td>
-        <th>目前投放产品合作周期：</th>
-        <td><stripes:text name="customerSurvey.productPeriod" class="form-control" id="productPeriod"/></td>
-        <th>目前是否有投放计划：</th>
-        <td>
-            <input type="radio" name="customerSurvey.ynPlan" value="1" class="form-control" id="ynPlan" checked="true">  &nbsp;是&nbsp;&nbsp;
-                                   <input type="radio" name="customerSurvey.ynPlan" value="0" class="form-control" id="ynPlan1"> &nbsp; 否</td>
-        </td>
+</tr>
+<tr>
+    <th>血液滤过：</th>
+    <td><input type="number" name="customerSurvey.hf" class="form-control" id="hf" placeholder="请输入血液滤过"
+    value="${actionBean.customerSurvey.hf}" required>
+    <%--<stripes:text name="customerSurvey.hf" class="form-control" id="hf"/>--%></td>
+<th>血液透析滤过：</th>
+<td><input type="number" name="customerSurvey.hdf" class="form-control" id="hdf" placeholder="请输入血液透析滤过"
+value="${actionBean.customerSurvey.hdf}" required>
+<%--<stripes:text name="customerSurvey.hdf" class="form-control" id="hdf"/>--%></td>
+<th>CRRT：</th>
+<td><input type="number" name="customerSurvey.crrt" class="form-control" id="crrt" placeholder="请输入CRRT"
+                value="${actionBean.customerSurvey.crrt}" required>
+        <%--<stripes:text name="customerSurvey.crrt" class="form-control" id="crrt"/>--%></td>
 
+<tr>
+<%--<th>月治疗次数：</th>
+<td><stripes:text name="customerSurvey.remedyMothly" class="form-control" id="remedyMothly"/></td>--%>
+    <th>血液灌流：</th>
+    <td><input type="number" name="customerSurvey.hp" class="form-control" id="hp" placeholder="请输入血液灌流"
+               value="${actionBean.customerSurvey.hp}" required>
+            <%--<stripes:text name="customerSurvey.hp" class="form-control" id="hp"/>--%></td>
     </tr>
-    <tr>
-        <th>计划投放透析机数量：</th>
-        <td><stripes:text name="customerSurvey.planDialys" class="form-control" id="planDialys"/></td>
-        <th>透析患者数：</th>
-        <td><stripes:text name="customerSurvey.hdfF1" class="form-control" id="hdfF1"/></td>
-        <th>腹透患者数：</th>
-        <td><stripes:text name="customerSurvey.nepdF1" class="form-control" id="nepdF1"/></td>
+<th>耗材产品销售渠道：</th>
+<td>
+<input type="radio" name="customerSurvey.channelDYMO" value="直销" class="form-control" id="channelDYMO" checked="true">&nbsp;直销&nbsp;&nbsp;
+<input type="radio" name="customerSurvey.channelDYMO" value="分销" class="form-control" id="channelDYMO1">&nbsp;分销
+</td>
+<th>设备销售产品渠道：</th>
+<td>
+<input type="radio" name="customerSurvey.channelDevice" value="直销" class="form-control" id="channelDevice" checked="true">&nbsp;直销&nbsp;&nbsp;
+<input type="radio" name="customerSurvey.channelDevice" value="分销" class="form-control" id="channelDevice1">&nbsp;分销
+</td>
+</tr>
+<tr>
+<th>是否存在产品投放：</th>
+<td>
+<input type="radio" name="customerSurvey.ynProduct" value="1" class="form-control" id="ynProduct" checked="true"> &nbsp;是&nbsp;&nbsp;
+<input type="radio" name="customerSurvey.ynProduct" value="0" class="form-control" id="ynProduct1">&nbsp; 否</td>
+<th>目前投放产品合作周期：</th>
+<td><input type="text" name="customerSurvey.productPeriod" class="form-control" id="productPeriod" placeholder="请输入目前投放产品合作周期"
+value="${actionBean.customerSurvey.productPeriod}" required>
+<%--<stripes:text name="customerSurvey.productPeriod" class="form-control" id="productPeriod"/>--%></td>
+<th>目前是否有投放计划：</th>
+<td>
+<input type="radio" name="customerSurvey.ynPlan" value="1" class="form-control" id="ynPlan" checked="true">  &nbsp;是&nbsp;&nbsp;
+<input type="radio" name="customerSurvey.ynPlan" value="0" class="form-control" id="ynPlan1"> &nbsp; 否
+</td>
+</tr>
+<tr>
+<th>计划投放透析机数量：</th>
+<td><input type="number" name="customerSurvey.planDialys" class="form-control" id="planDialys" placeholder="请输入计划投放透析机数量"
+    value="${actionBean.customerSurvey.planDialys}" required>
+    <%--<stripes:text name="customerSurvey.planDialys" class="form-control" id="planDialys"/>--%></td>
+<th>透析患者数：</th>
+<td><input type="number" name="customerSurvey.hdfF1" class="form-control" id="hdfF1" placeholder="请输入透析患者数"
+value="${actionBean.customerSurvey.hdfF1}" required>
+<%--<stripes:text name="customerSurvey.hdfF1" class="form-control" id="hdfF1"/>--%></td>
+<th>腹透患者数：</th>
+<td><input type="number" name="customerSurvey.nepdF1" class="form-control" id="nepdF1" placeholder="请输入腹透患者数"
+value="${actionBean.customerSurvey.nepdF1}" required>
+<%--<stripes:text name="customerSurvey.nepdF1" class="form-control" id="nepdF1"/>--%></td>
 
-    </tr>
-    <tr>
-        <th>月透析人次：</th>
-        <td><input type="text" name="customerSurvey.hdfF2" class="form-control" id="hdfF2" placeholder="月透析人次" required ></td>
-        <th>月腹透人次：</th>
-        <td><stripes:text name="customerSurvey.nepdF2" class="form-control" id="nepdF2"/></td>
-        <th>最长透析龄：</th>
-        <td><stripes:text name="customerSurvey.hdfF3" class="form-control" id="hdfF3"/></td>
+</tr>
+<tr>
+<th>月透析人次：</th>
+<td><input type="number" name="customerSurvey.hdfF2" class="form-control" id="hdfF2" placeholder="请输入月透析人次"
+value="${actionBean.customerSurvey.hdfF2}" required>
+<%--<input type="text" name="customerSurvey.hdfF2" class="form-control" id="hdfF2" placeholder="月透析人次" required >--%></td>
+<th>月腹透人次：</th>
+<td><input type="number" name="customerSurvey.nepdF2" class="form-control" id="nepdF2" placeholder="请输入月腹透人次"
+value="${actionBean.customerSurvey.nepdF2}" required>
+<%--<stripes:text name="customerSurvey.nepdF2" class="form-control" id="nepdF2"/>--%></td>
+<th>最长透析龄：</th>
+<td><input type="number" name="customerSurvey.hdfF3" class="form-control" id="hdfF3" placeholder="请输入最长透析龄"
+value="${actionBean.customerSurvey.hdfF3}" required>
+<%--<stripes:text name="customerSurvey.hdfF3" class="form-control" id="hdfF3"/>--%></td>
 
-    </tr>
-    <tr>
-        <th>最长腹透龄：</th>
-        <td><stripes:text name="customerSurvey.nepdF3" class="form-control" id="nepdF3"/></td>
-        <th>客户评判：</th>
-        <td>
-            <stripes:select name="customerSurvey.feedback" id="feedback">
-                <stripes:option value="战略">战略</stripes:option>
-                <stripes:option value="重要">重要</stripes:option>
-                <stripes:option value="一般">一般</stripes:option>
-            </stripes:select>
-        </td>
-        <th>评判说明：</th>
-        <td colspan="5"><stripes:text name="customerSurvey.fbNote" class="form-control" id="fbNote"/></td>
+</tr>
+<tr>
+<th>最长腹透龄：</th>
+<td><input type="number" name="customerSurvey.nepdF3" class="form-control" id="nepdF3" placeholder="请输入最长腹透龄"
+value="${actionBean.customerSurvey.nepdF3}" required>
+<%--<stripes:text name="customerSurvey.nepdF3" class="form-control" id="nepdF3"/>--%></td>
+<th>客户评判：</th>
+<td>
+<stripes:select name="customerSurvey.feedback" id="feedback">
+<stripes:option value="战略">战略</stripes:option>
+<stripes:option value="重要">重要</stripes:option>
+<stripes:option value="一般">一般</stripes:option>
+</stripes:select>
+</td>
+<th>评判说明：</th>
+<td colspan="5"><stripes:text name="customerSurvey.fbNote" class="form-control" id="fbNote"/></td>
 
-    </tr>
+</tr>
 
 </table>
 <!--相关负责人-->
 <table class="table table-bordered">
-    <tbody>
-    <tr>
-        <th width='15%'>负责人：</th>
+<tbody>
+<tr>
+<th width='15%'>负责人：</th>
 
-        <th width='15%'>职务：</th>
+<th width='15%'>职务：</th>
 
-        <th width='15%'>联系方式：</th>
+<th width='15%'>联系方式：</th>
 
-        <th width='15%'>决策范围：</th>
+<th width='15%'>决策范围：</th>
 
-        <th width='20%'>个人爱好：</th>
+<th width='20%'>个人爱好：</th>
 
-        <th width='20%'>学术影响力：</th>
+<th width='20%'>学术影响力：</th>
 
-    </tr>
-    <tr id="tr_customerStaff"></tr>
-    <!--
-            <tr>
-                <td><stripes:text style="width:140px" name="customerSurvey.staff" class="form-control"
-                                  id="staff"/></td>
-                <td><stripes:text style="width:140px" name="customerSurvey.staffDuty" class="form-control"
-                                  id="staffDuty"/></td>
-                <td><stripes:text style="width:140px" name="customerSurvey.staffTel" class="form-control"
-                                  id="staffTel"/></td>
-                <td><stripes:text style="width:140px" name="customerSurvey.staffForce" class="form-control"
-                                  id="staffForce"/></td>
-                <td><stripes:text style="width:190px" name="customerSurvey.staffFavor" class="form-control"
-                                  id="staffFavor"/></td>
-                <td><stripes:text style="width:190px" name="customerSurvey.staffImpact" class="form-control"
-                                  id="staffImpact"/></td>
-            </tr>  -->
-    </tbody>
+</tr>
+<tr id="tr_customerStaff"></tr>
+<!--
+<tr>
+<td><stripes:text style="width:140px" name="customerSurvey.staff" class="form-control"
+id="staff"/></td>
+<td><stripes:text style="width:140px" name="customerSurvey.staffDuty" class="form-control"
+id="staffDuty"/></td>
+<td><stripes:text style="width:140px" name="customerSurvey.staffTel" class="form-control"
+id="staffTel"/></td>
+<td><stripes:text style="width:140px" name="customerSurvey.staffForce" class="form-control"
+id="staffForce"/></td>
+<td><stripes:text style="width:190px" name="customerSurvey.staffFavor" class="form-control"
+id="staffFavor"/></td>
+<td><stripes:text style="width:190px" name="customerSurvey.staffImpact" class="form-control"
+id="staffImpact"/></td>
+</tr>  -->
+</tbody>
 </table>
-                         <hr/>
+<hr/>
 <div class="form-inline" >
-    业务板块：
-    <select id='prodType' onchange='loadProInfo()' style="width: 70px;">
-        <option value='耗材' selected="selected">耗材</option>
-        <option value='设备'>设备</option>
-    </select>
-    产品类别:
-    <select id='category' onchange='loadBrand()' style="width: 150px;">
+业务板块：
+<select id='prodType' onchange='loadProInfo()' style="width: 70px;">
+<option value='耗材' selected="selected">耗材</option>
+<option value='设备'>设备</option>
+</select>
+产品类别:
+<select id='category' onchange='loadBrand()' style="width: 150px;">
 
-    </select>
-    品牌:
-    <select id='brand' onchange='loadFamily()' style="width: 150px;">
+</select>
+品牌:
+<select id='brand' onchange='loadFamily()' style="width: 150px;">
 
-    </select>
-    规格:
-    <select id='family' onchange='loadPartNo()' style="width: 100px;">
+</select>
+规格:
+<select id='family' onchange='loadPartNo()' style="width: 100px;">
 
-    </select>
-    型号：
-    <select id='partNo' style="width: 90px;">
+</select>
+型号：
+<select id='partNo' style="width: 90px;">
 
-    </select>
+</select>
 
 
-    <div class="btn btn-primary" value="" onclick="addProdLine()">增加产品行</div>
-    <div class="btn btn-primary" value="" onclick="removeLastProd('tr_category')">移除最末行</div>
+<div class="btn btn-primary" value="" onclick="addProdLine()">增加产品行</div>
+<div class="btn btn-primary" value="" onclick="removeLastProd('tr_category')">移除最末行</div>
 </div>
 
 <hr/>
 <table class="table table-bordered">
-    <tbody id="tr_category">
+<tbody id="tr_category">
 
-    <tr id="0">
-        <th width='10%'>产品类别：</th>
+<tr id="0">
+<th width='10%'>产品类别：</th>
 
-        <th width='10%'>品牌：</th>
+<th width='10%'>品牌：</th>
 
-        <th width='10%'>规格：</th>
+<th width='10%'>规格：</th>
 
-        <th width='10%'>产品型号：</th>
+<th width='10%'>产品型号：</th>
 
-        <th width='10%'>数量/使用量：</th>
+<th width='10%'>数量/使用量：</th>
 
-        <th width='10%'>市场价格：</th>
+<th width='10%'>市场价格：</th>
 
-        <th width='10%'>复用情况：</th>
+<th width='10%'>复用情况：</th>
 
-        <th width='20%'>装机时间：</th>
-    </tr>
-    <!--
-    <tr>
-        <th width='10%'><select id='prodType' onchange='loadProInfo()' style="width: 70px;">
-            <option value='耗材' selected="selected">耗材</option>
-            <option value='设备'>设备</option>
-        </select></th>
+<th width='20%'>装机时间：</th>
+</tr>
+<!--
+<tr>
+<th width='10%'><select id='prodType' onchange='loadProInfo()' style="width: 70px;">
+<option value='耗材' selected="selected">耗材</option>
+<option value='设备'>设备</option>
+</select></th>
 
-        <th width='10%'><select id='category' onchange='loadBrand()' style="width: 150px;">
+<th width='10%'><select id='category' onchange='loadBrand()' style="width: 150px;">
 
-        </select></th>
+</select></th>
 
-        <th width='10%'><select id='brand' onchange='loadFamily()' style="width: 130px;">
+<th width='10%'><select id='brand' onchange='loadFamily()' style="width: 130px;">
 
-        </select></th>
+</select></th>
 
-        <th width='10%'><select id='family' onchange='loadPartNo()' style="width: 100px;">
+<th width='10%'><select id='family' onchange='loadPartNo()' style="width: 100px;">
 
-        </select></th>
+</select></th>
 
-        <th width='10%'><select id='partNo' style="width: 100px;">
+<th width='10%'><select id='partNo' style="width: 100px;">
 
-        </select></th>
+</select></th>
 
-        <th width='10%'></th>
+<th width='10%'></th>
 
-        <th width='10%'></th>
+<th width='10%'></th>
 
-        <th width='10%'></th>
-        <th width='20%'></th>
-    </tr>
-        -->
-    </tbody>
+<th width='10%'></th>
+<th width='20%'></th>
+</tr>
+-->
+</tbody>
 </table>
 
 
-<input type="text" name="customerSurvey.jsonString" value="" id="jsonString">
+<input type="hidden" name="customerSurvey.jsonString" value="" id="jsonString" >
 <button class="btn btn-primary "  onclick="addCustomerSurvey()" />
 添加</button>
 <!--
 <button class="btn btn-lg btn-primary btn-block"  >添加</button>
 -->
-    </stripes:form>
+</stripes:form>
 
 
 </div>
 <%@ include file="../common/IncludeBottom.jsp" %>
 
 <script type="text/javascript">
-
+    $(function () {
+        $('.datepicker').datepicker();
+    })
 </script>
 
 

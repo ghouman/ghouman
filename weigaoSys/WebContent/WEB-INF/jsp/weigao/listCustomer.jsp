@@ -71,7 +71,7 @@
                              event="goUpdateCustomer">
                    修改
                    <stripes:param name="uid" value="${row.uid}"/>
-               </stripes:link>
+            </stripes:link>
         </display:column>
     </display:table>
 
