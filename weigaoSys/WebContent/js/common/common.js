@@ -6,6 +6,7 @@ $(function ($) {
         if (r != null) return unescape(r[2]);
         return null;
     };
+
     getCurrentDate = function () {
         var date = new Date();
         var month = date.getMonth() + 1;
@@ -19,6 +20,8 @@ $(function ($) {
         var currentdate = month + "/" + strDate + "/" + date.getFullYear();
         return currentdate;
     };
+
+
 
 });
 

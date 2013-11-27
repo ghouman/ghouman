@@ -3,9 +3,39 @@ $(function () {
     var obj = $.getUrlParam('obj');
     var jsonObj = JSON.parse(decodeURIComponent(obj));
     initCustomer(jsonObj);
-    loadStaffInfo(jsonObj);
+    loadStaffInfo(jsonObj.uid);
     loadProInfo();
+    $('#addCustomerSurveyForm').scojs_valid({
+        rules: {doctor : ['not_empty']
+
+        }
+    });
 });
+
+function loadStaffInfo(uid) {
+        //加载负责人信息
+        $.ajax({
+            type: "POST",
+            url: "/actions/CustomerStaff.action?getCustomerStaffByCID=",
+            data: "customerId=" + uid,
+            contentType: "application/x-www-form-urlencoded; charset=utf-8",
+
+            dataType: "json",
+            success: function (obj) {
+                var customerStaffList = obj.customerStaffList;
+                var tr_customerStaff = "";
+                $(customerStaffList).each(function () {
+                    var that = this;
+                    tr_customerStaff = tr_customerStaff + '<tr><td>'
+                        + that.staff + '</td><td>' + that.staffDuty + '</td><td>' + that.staffTel +
+                        '</td><td>' + this.staffForce + '</td><td>' + this.staffFavor
+                        + '</td><td>' + this.staffImpact + '</td></tr>';
+                });
+
+                $("#tr_customerStaff").replaceWith(tr_customerStaff);
+            }
+        });
+    }
 
 function initCustomer(jsonObj) {
     $('#customerId').val(jsonObj.uid);
@@ -29,30 +59,7 @@ function initCustomer(jsonObj) {
    // var currentDate = getCurrentDate();
     //$('#surveyDate').val(currentDate);
 }
-function loadStaffInfo(jsonObj) {
-    //加载负责人信息
-    $.ajax({
-        type: "POST",
-        url: "/actions/CustomerStaff.action?getCustomerStaffByCID=",
-        data: "customerId=" + jsonObj.uid,
-        contentType: "application/x-www-form-urlencoded; charset=utf-8",
 
-        dataType: "json",
-        success: function (obj) {
-            var customerStaffList = obj.customerStaffList;
-            var tr_customerStaff = "";
-            $(customerStaffList).each(function () {
-                var that = this;
-                tr_customerStaff = tr_customerStaff + '<tr><td>'
-                    + that.staff + '</td><td>' + that.staffDuty + '</td><td>' + that.staffTel +
-                    '</td><td>' + this.staffForce + '</td><td>' + this.staffFavor
-                    + '</td><td>' + this.staffImpact + '</td></tr>';
-            });
-
-            $("#tr_customerStaff").replaceWith(tr_customerStaff);
-        }
-    });
-}
 function loadProInfo() {
 
     var plate;
@@ -182,7 +189,7 @@ function addProdLine() {
     var tr_html = "<tr id=" + tr_id + "><td>" + category + "</td><td>" + brand + "</td><td>" + family + "</td><td>" + partNo +
         "</td><td><input type='number' required style='width:100px' id='amount'/></td><td>" +
         "<input type='number' required style='width:100px' id='price'/></td>" +
-        "<td><input type='number' style='width:100px' id='reUseInfo'/></td><td><input type='date' class='date'  id='date" + tr_id + "'" +
+        "<td><input type='number' style='width:100px' id='reUseInfo'/></td><td><input type='date' class='datepicker'  id='date" + tr_id + "'" +
         "  style='width:150px'/></td>" +
         "<input type='hidden' id='partNoUid' value='" + partNoUid + "'></tr>"
 
@@ -214,7 +221,7 @@ function addCustomerSurvey() {
                 obj.aPrice = $(this).find("#price").val(); //价格
                 obj.partID = $(this).find("#partNoUid").val(); //规格ID
                 obj.bReUseNote = $(this).find("#reUseInfo").val();//复用说明
-                obj.bInstallDate = $(this).find(".date").val(); //装机日期
+                obj.bInstallDate = $(this).find(".datepicker").val(); //装机日期
                 isAddProd = true;
                 arrayObj.push(obj);
             }
