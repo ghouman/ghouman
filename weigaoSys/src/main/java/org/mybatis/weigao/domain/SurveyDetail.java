@@ -22,11 +22,67 @@ public class SurveyDetail implements Serializable {
     private String surveyNo;//调研编号
     private int partID;   //产品型号ID
 
+    private int uid;//产品明细ID
+
     private int ahsca;  //数量
     private int aPrice; //价格
-    private int bReUseNote;  //复用说明
+    private int bReUseNote;  //复用情况
     private String bInstallDate; //装机日期
     private String remark;
+
+    private String category;
+    private String brand;
+    private String family;
+    private String partNo;
+    private String unit;
+
+    public int getUid() {
+        return uid;
+    }
+
+    public void setUid(int uid) {
+        this.uid = uid;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public String getFamily() {
+        return family;
+    }
+
+    public void setFamily(String family) {
+        this.family = family;
+    }
+
+    public String getPartNo() {
+        return partNo;
+    }
+
+    public void setPartNo(String partNo) {
+        this.partNo = partNo;
+    }
+
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
+    }
 
     public String getSurveyNo() {
         return surveyNo;
